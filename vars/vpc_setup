@@ -1,0 +1,24 @@
+# creating the vpc name
+vpc_name: "vprofile-vpc"
+
+# creating the vpc region
+region: 'ap-south-1'
+
+# creating the vpc range
+vpccidr: 172.20.0.0/16
+
+# creating the vpc subnet
+pubsub1cidr: 172.20.1.0/24
+pubsub2cidr: 172.20.2.0/24
+pubsub3cidr: 172.20.3.0/24
+prisub1cidr: 172.20.4.0/24
+prisub2cidr: 172.20.5.0/24
+prisub3cidr: 172.20.6.0/24
+
+# creating the vpc zone
+zone1: ap-south-1a
+zone2: ap-south-1b
+zone3: ap-south-1c
+
+state: present
+
