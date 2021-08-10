@@ -139,7 +139,7 @@
     - debug:
         var: "{{item}}"
       loop:
-        - vpc_out.vpc.id
+        - vpcout.vpc.id
         - pubsub1_out.subnet.id
         - pubsub2_out.subnet.id
         - pubsub3_out.subnet.id
@@ -152,7 +152,7 @@
         - prirt_out.route_table.id
 
     - set_fact:
-        vpcoutid: "{{vpc_out.vpc.id}}"
+        vpcoutid: "{{vpcout.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
         pubsub2id:  "{{pubsub2_out.subnet.id}}"
         pubsub3id:  "{{pubsub3_out.subnet.id}}"
