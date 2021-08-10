@@ -135,7 +135,6 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{natgw_out.nat_gateway_id}}"
       register: prirt_out
-
     - debug:
         var: "{{item}}"
       loop:
@@ -150,7 +149,6 @@
         - pubrt_out.route_table.id
         - natgw_out.gateway_id
         - prirt_out.nat_gateway_id
-
       set_fact:
         vpcoutid: "{{vpc_out.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
