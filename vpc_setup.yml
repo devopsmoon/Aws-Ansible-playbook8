@@ -136,22 +136,22 @@
             gateway_id: "{{natgw_out.nat_gateway_id}}"
       register: prirt_out
 
-  - debug:
-      var: "{{item}}"
-    loop:
-      - vpc_out.vpc.id
-      - pubsub1_out.subnet.id
-      - pubsub2_out.subnet.id
-      - pubsub3_out.subnet.id
-      - prisub1_out.subnet.id
-      - prisub2_out.subnet.id
-      - prisub3_out.subnet.id
-      - igw_out.gateway_id
-      - pubrt_out.route_table.id
-      - natgw_out.gateway_id
-      - prirt_out.nat_gateway_id
+    - debug:
+        var: "{{item}}"
+      loop:
+        - vpc_out.vpc.id
+        - pubsub1_out.subnet.id
+        - pubsub2_out.subnet.id
+        - pubsub3_out.subnet.id
+        - prisub1_out.subnet.id
+        - prisub2_out.subnet.id
+        - prisub3_out.subnet.id
+        - igw_out.gateway_id
+        - pubrt_out.route_table.id
+        - natgw_out.gateway_id
+        - prirt_out.nat_gateway_id
 
-  - set_fact:
+    - set_fact:
         vpcoutid: "{{vpc_out.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
         pubsub2id:  "{{pubsub2_out.subnet.id}}"
