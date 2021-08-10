@@ -163,6 +163,7 @@
         pubrtid:  "{{pubrt_out.route_table.id}}"
         natgwid: "{{natgw_out.gateway_id}}"
         prirtid: "{{prirt_out.nat_gateway_id}}"
+        cacheable: yes
 
     - name:
       copy:
