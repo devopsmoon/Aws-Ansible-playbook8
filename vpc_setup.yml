@@ -161,8 +161,8 @@
         prisub3id:  "{{prisub3_out.subnet.id}}"
         igwid:  "{{igw_out.gateway_id}}"
         pubrtid:  "{{pubrt_out.route_table.id}}"
-        natgwid: "{{natgw_out.gateway_id}}"
-        prirtid: "{{prirt_out.nat_gateway_id}}"
+        natgwid: "{{natgw_out.nat_gateway_id}}"
+        prirtid: "{{prirt_out.route_table_id}}"
         cacheable: yes
 
     - name:
