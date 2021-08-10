@@ -151,7 +151,7 @@
       - natgw_out.gateway_id
       - prirt_out.nat_gateway_id
 
-    set_fact:
+  - set_fact:
         vpcoutid: "{{vpc_out.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
         pubsub2id:  "{{pubsub2_out.subnet.id}}"
