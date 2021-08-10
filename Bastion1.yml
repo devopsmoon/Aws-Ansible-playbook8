@@ -25,19 +25,21 @@
         content: "{{keyout.private_key}}"
         dest: "./loginkey.pem"
         mode: 0600
-      when: key.changed
+      when: keyout.changed
 
     - name: creating the security group for bastion host
       ec2_group:
-        vpc_id: "{{vpcout.vpc.id}}"
+        name: bastion-sg
+        description: allow port 22 from any where
         region: "{{region}}"
+        vpc_id: "{{vpcout.vpc.id}}"
         state: present
         rules:
           - proto: tcp
             from_port: 22
             to_port: 22
-        tags:
-          Name: vprofile-SG
+            cidr_ip: "{{MYIP}}"
+      register: bastionsg_out
 
     - name: creating the bastion host
       ec2:
@@ -45,9 +47,8 @@
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
-        state: present
         wait: yes
-          wait_timeout: 300
+        state: present
         instance_tags:
           Name: Bastion-host
           project: vprofile
@@ -57,5 +58,7 @@
           Name: Bastion-host
           project: vprofile
           owner: devopsteam
-      register: bastion_out
+        group_id: "{{bastionsg_out.group_id}}"
+        vpc_subnet_id: "{{pubsub1id}}"
+      register: bastionhost_out
 
