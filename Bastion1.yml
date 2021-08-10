@@ -32,7 +32,7 @@
         name: bastion-sg
         description: allow port 22 from any where
         region: "{{region}}"
-        vpc_id: "{{vpcout.vpc.id}}"
+        vpc_id: "{{vpcoutid}"
         state: present
         rules:
           - proto: tcp
