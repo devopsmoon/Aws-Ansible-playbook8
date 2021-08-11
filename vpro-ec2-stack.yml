@@ -30,8 +30,8 @@
         vpc_id: "{{vpcoutid}}"
         rules:
           - proto: tcp
-            from_ports: 80
-            to_ports: 80
+            from_port: 80
+            to_port: 80
             cidr_ip: 0.0.0.0/0
       register: vproELBSG_out
 
