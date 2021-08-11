@@ -159,10 +159,10 @@
         prisub1id:  "{{prisub1_out.subnet.id}}"
         prisub2id:  "{{prisub2_out.subnet.id}}"
         prisub3id:  "{{prisub3_out.subnet.id}}"
-        igwid:  "{{igw_out.gateway_id}}"
-        pubrtid:  "{{pubrt_out.route_table.id}}"
-        natgwid: "{{natgw_out.nat_gateway_id}}"
-        prirtid: "{{prirt_out.route_table.id}}"
+        igwid:      "{{igw_out.gateway_id}}"
+        pubrtid:    "{{pubrt_out.route_table.id}}"
+        natgwid:    "{{natgw_out.nat_gateway_id}}"
+        prirtid:     "{{prirt_out.route_table.id}}"
         cacheable: yes
 
     - name:
