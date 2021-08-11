@@ -2,7 +2,7 @@
 vpc_name: "vprofile-vpc"
 
 # creating the vpc region
-region: 'ap-south-1'
+region: "ap-south-1"
 
 # creating the vpc range
 vpccidr: 172.20.0.0/16
@@ -22,3 +22,5 @@ zone3: ap-south-1c
 
 state: present
 
+bastion_ami: ami-04db49c0fb2215364
+MYIP: 122.169.133.156/32

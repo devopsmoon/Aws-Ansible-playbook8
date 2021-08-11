@@ -4,9 +4,6 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: importing the variables
-      include_vars: vars/Bastion_setup
-
     - name: importing the varaibles1
       include_vars: vars/vpc_setup
 
