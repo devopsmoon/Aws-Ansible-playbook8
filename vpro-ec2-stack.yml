@@ -1,0 +1,23 @@
+- name: playbook for creating the ec2 instances
+  hosts: localhost
+  become:
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: importing the variables file
+      include_vars: vars/out_put.var
+    - name: creating the login key for ec2-instance
+      ec2_key:
+        name: login-key
+        region: "{{region}}"
+      register: keyout
+
+    - debug:
+        var: keyout
+
+    - name:
+      copy:
+        content: "{{keyout.key.private_key}}"
+        dest: "./loginkey1.pem"
+        mode: 0600
+      when: keyout.changed

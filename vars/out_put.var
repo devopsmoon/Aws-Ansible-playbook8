@@ -1,3 +1,4 @@
+region: "ap-south-1"
 vpcoutid: vpc-0c8b20fa51492151b
 pubsub1id: subnet-059648e2b1a8e38c6
 pubsub2id: subnet-056bf626241f47b9a
