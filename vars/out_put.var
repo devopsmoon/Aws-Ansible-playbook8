@@ -5,7 +5,7 @@ pubsub3id: subnet-0fd4a24746e01d0f3
 prisub1id: subnet-01f310c5a2b73f0b7
 prisub2id: subnet-04713ff7513335cec
 prisub3id: subnet-06fde299285e27782
-igwid:     igw-08fcd4c98146edc08
-pubrtid:   rtb-05cc499143ee4ceed
-natgwid:   nat-08f7704c2a051ae89
-prirtid:   rtb-0d1486f0b93c7bb0c
+igwid: igw-08fcd4c98146edc08
+pubrtid: rtb-0c5e438abe49f03b7
+natgwid: nat-08f7704c2a051ae89
+prirtid: rtb-0a1646b4a749a6fb8
