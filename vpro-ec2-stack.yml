@@ -41,12 +41,29 @@
         description: allow port 22 from every where
         region: "{{region}}"
         vpc_id: "{{vpcoutid}}"
+        purge_rules: no
         rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELBSG_out.group_id}}"
+
           - proto: tcp
             from_port: 22
             to_port: 22
-            group_id: "{{bastionSGid}}"
+            group_id: "{{bastionsgid}}"
       register: vprostackSG_out
+
+    - name:
+      ec2_group:
+        name: vprostack-sg
+        description: allow port 22 from every where and all ports within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        rules:
+          - proto: all
+            group_id: "{{vprostackSG_out.group_id}}"
+
 
 
 
