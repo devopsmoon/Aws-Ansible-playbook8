@@ -1,0 +1,70 @@
+- name: creating the security group for ec2-instances
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: importing the out_put vars
+      include_vars: vars/out_put.var
+    - name: importing the vpro-stack-setup
+      include_vars: vars/vprostacksetup
+
+    - name: creating the aws key for ec2-instance
+      ec2_key:
+        name: vprofile-key11
+        region: "{{region}}"
+      register: key_out
+
+    - debug:
+        var: key_out
+
+    - name: save the key pair in the system
+      copy:
+        content: "{{key_out.key.private_key}}"
+        dest: "./login-key11.pem"
+        mode: 0600
+      when: key_out.changed
+
+    - name: creating the security group for load balancing
+      ec2_group:
+        name: vprofileELB-SG
+        description: allow port 80 from any where
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vprofileELB-SG_out
+
+    - name: creating the security group for vprofile stack
+      ec2_group:
+        name: vprofile-stack-sg
+        description: allow port 80 from any where
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vprofileELB-SG_out.group_id}}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{bastionsgid}}"
+      register: vprofile-stack-sg_out
+
+    - name: creating the security group for all traffic
+      ec2_group:
+        name:
+        description: allow all trafic from its own sg
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        rules:
+          - proto: all
+            group_id: "{{vprofile-stack-sg_out.group_id}}"
+
+
