@@ -10,7 +10,7 @@
     - name: importing the varaibles1
       include_vars: vars/vpc_setup
 
-    - name: importing the variables1
+    - name: importing the variables2
       include_vars: vars/out_put.var
 
     - name: creating the aws key pair for bastion host
