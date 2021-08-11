@@ -15,7 +15,7 @@
 
     - name: creating the aws key pair for bastion host
       ec2_key:
-        name: loginkey
+        name: vprofile-key
         region: "{{region}}"
         state: present
       register: keyout
@@ -26,8 +26,9 @@
     - name: saving the key file
       copy:
         content: "{{keyout.key.private_key}}"
-        dest: "./loginkey.pem"
+        dest: "./vprofile-key.pem"
         mode: 0600
+      when: keyout.changed
 
 
     - name: creating the security group for bastion host
