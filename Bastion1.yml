@@ -11,7 +11,7 @@
       include_vars: vars/vpc_setup
 
     - name: importing the variables1
-      include_vars: vars/vpc_setup
+      include_vars: vars/out_put.var
 
     - name: creating the aws key pair for bastion host
       ec2_key:
@@ -28,14 +28,14 @@
         content: "{{keyout.key.private_key}}"
         dest: "./loginkey.pem"
         mode: 0600
-      when: keyout.changed
+
 
     - name: creating the security group for bastion host
       ec2_group:
         name: bastion-sg
         description: allow port 22 from any where
         region: "{{region}}"
-        vpc_id: "{{vpcoutid}"
+        vpc_id: "{{vpcoutid}}"
         state: present
         rules:
           - proto: tcp
