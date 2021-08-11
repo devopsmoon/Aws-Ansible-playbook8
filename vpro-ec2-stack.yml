@@ -21,3 +21,32 @@
         dest: "./loginkey1.pem"
         mode: 0600
       when: keyout.changed
+
+    - name: creating the security group for load balancer
+      ec2_group:
+        name: vproELB-SG
+        description: allow port 80 from any where
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        rules:
+          - proto: tcp
+            from_ports: 80
+            to_ports: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELBSG_out
+
+    - name: creating the security group for vprofile stack
+      ec2_group:
+        name: vprofilestack-sg
+        description: allow port 22 from every where
+        region: "{{region}}"
+        vpc_id: "{{vpcoutid}}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{bastionSGid}}"
+      register: vprostackSG_out
+
+
+
