@@ -52,7 +52,6 @@
         instance_type: t2.micro
         image: "{{bastion_ami}}"
         wait: yes
-        state: present
         instance_tags:
           Name: Bastion-host
           project: vprofile
